@@ -17,15 +17,6 @@ class _LocationInputState extends State<LocationInput> {
   PlaceLocation? _pickedLocation;
   var _isGettingLocation = false;
 
-  String get locationName {
-    if (_pickedLocation == null) {
-      return " ";
-    }
-
-    final lat = _pickedLocation.latitude;
-    final lng = _pickedLocation.longitude;
-  }
-
   void _getCurrentLocation() async {
     setState(() {
       _isGettingLocation = true;
@@ -52,11 +43,11 @@ class _LocationInputState extends State<LocationInput> {
       }
     }
 
-    setState(() {
-      _pickedLocation =
-          PlaceLocation(latitude: lat!, longitude: lng, address: address);
-      _isGettingLocation = true;
-    });
+    // setState(() {
+    //   _pickedLocation =
+    //       PlaceLocation(latitude: lat!, longitude: lng, address: address);
+    //   _isGettingLocation = true;
+    // });
 
     locationData = await location.getLocation();
     final lat = locationData.latitude;
@@ -92,7 +83,7 @@ class _LocationInputState extends State<LocationInput> {
 
     if (_isGettingLocation) {
       previewContent = LoadingAnimationWidget.fallingDot(
-        color: const Color.fromARGB(255, 133, 243, 48),
+        color: Theme.of(context).colorScheme.onBackground,
         size: 50,
       );
     }
